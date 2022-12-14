@@ -20,4 +20,6 @@ fi
 
 sudo --set-home -u builder
 
+git config --global --add safe.directory /github/workspace
+
 sudo --set-home -u builder yay -S --noconfirm --builddir=./ "$pkgname"

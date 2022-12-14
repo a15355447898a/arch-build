@@ -9,7 +9,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-clear,linux-clear-headers]
+        repos: [linux-clear-headers]
 
       fail-fast: false
       
