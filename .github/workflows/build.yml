@@ -10,13 +10,6 @@ jobs:
     strategy:
       matrix:
         repos: [linux-cachyos-cacule,linux-cachyos-cacule-headers,linux-clear-headers]
-        include:
-          - repos: git-cola
-            preinstall-pkgs: "at-spi2-core"
-          - repos: realesrgan-ncnn-vulkan
-            preinstall-pkgs: "vulkan-intel"
-          - repos: python-octodns
-            preinstall-pkgs: "python-pip"
 
       fail-fast: false
       
