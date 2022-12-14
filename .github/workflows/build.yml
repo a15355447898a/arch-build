@@ -3,13 +3,13 @@ name: BUILD
 on:
   push:
   schedule:
-    - cron:  '1 */8 * * *'
+    - cron:  '1 */4 * * *'
 
 jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-clear-headers]
+        repos: [linux-clear,linux-clear-headers]
 
       fail-fast: false
       
