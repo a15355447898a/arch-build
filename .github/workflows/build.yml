@@ -9,7 +9,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-cachyos-cacule,linux-cachyos-cacule-headers,linux-clear-headers]
+        repos: [linux-clear-headers]
 
       fail-fast: false
       
