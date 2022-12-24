@@ -39,7 +39,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: [linux-clear,linux-cjktty]
+        PKGBUILDs: [linux-clear]
 
       fail-fast: false
       
