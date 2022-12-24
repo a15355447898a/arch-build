@@ -9,7 +9,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-clear-headers]
+        repos: [linux-cjktty]
 
       fail-fast: false
       
