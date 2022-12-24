@@ -9,7 +9,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-cjktty]
+        repos: [linux-xanmod]
 
       fail-fast: false
       
@@ -39,7 +39,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: [linux-clear]
+        PKGBUILDs: [linux-clear,linux-cjktty]
 
       fail-fast: false
       
