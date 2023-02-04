@@ -9,7 +9,8 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-cachyos-cacule,linux-cachyos-pds]
+        repos: [linux-cachyos-pds]
+        #repos: [linux-cachyos-cacule,linux-cachyos-pds]
 
       fail-fast: false
       
