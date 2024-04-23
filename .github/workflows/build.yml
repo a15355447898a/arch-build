@@ -2,14 +2,16 @@ name: BUILD
 
 on:
   push:
-  schedule:
-    - cron:  '1 */9 * * *'
+    #schedule:
+    #  - cron:  '1 */9 * * *'
+    branches:
+      - 'main'
 
 jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [linux-cachyos-pds]
+        repos: [linux-clear]
         #repos: [linux-cachyos-cacule,linux-cachyos-pds]
 
       fail-fast: false
@@ -40,7 +42,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: [linux-clear-cjktty]
+        PKGBUILDs: [linux-clear-sun]
 
       fail-fast: false
       
