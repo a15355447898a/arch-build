@@ -5,7 +5,7 @@ on:
     #schedule:
     #  - cron:  '1 */9 * * *'
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   buildAUR:
