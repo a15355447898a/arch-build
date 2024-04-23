@@ -142,6 +142,9 @@ prepare() {
 		patch -Np1 -i "$srcdir/$pkgbase/${i}"
 	done
 
+	### 复制配置
+	cp ../config .config
+
 	### 添加cjktty补丁
 	local src
 	for src in "${source[@]}"; do
@@ -168,6 +171,7 @@ prepare() {
 	### 添加zfs补丁
 	cd ${srcdir}/"zfs"
 	./autogen.sh
+	sed -i "s|\$(uname -r)|${pkgver}-clear-sun|g" configure
 	./configure CC=gcc --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin --libdir=/usr/lib \
 		--datadir=/usr/share --includedir=/usr/include --with-udevdir=/lib/udev \
 		--libexecdir=/usr/lib/zfs --with-config=kernel \
