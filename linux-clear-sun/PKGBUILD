@@ -153,6 +153,14 @@ prepare() {
 		patch -Np1 <"../$src"
 	done
 
+	### 开启KEXEC
+	scripts/config -e CONFIG_KEXEC \
+		-e CONFIG_KEXEC_FILE \
+		-e CONFIG_KEXEC_SIG \
+		-e CONFIG_KEXEC_BZIMAGE_VERIFY_SIG \
+		-e CONFIG_KEXEC_JUMP \
+		-e CONFIG_KEXEC_CORE
+
 	### 编译zfs前面的准备
 	make ${BUILD_FLAGS[*]} CFLAGS="-O2 -march=native" CXXFLAGS="-O2 -march=native -lstdc++" prepare -j$(nproc)
 	make ${BUILD_FLAGS[*]} CFLAGS="-O2 -march=native" CXXFLAGS="-O2 -march=native -lstdc++" modules_prepare -j$(nproc)
@@ -170,14 +178,6 @@ prepare() {
 	### 开启zfs选项
 	cd ${srcdir}/${_srcname}
 	scripts/config -e CONFIG_ZFS
-
-	### 开启KEXEC
-	scripts/config -e CONFIG_KEXEC \
-		-e CONFIG_KEXEC_FILE \
-		-e CONFIG_KEXEC_SIG \
-		-e CONFIG_KEXEC_BZIMAGE_VERIFY_SIG \
-		-e CONFIG_KEXEC_JUMP \
-		-e CONFIG_KEXEC_CORE
 
 	### 设置配置
 	echo "Setting config..."
