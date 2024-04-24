@@ -13,11 +13,9 @@ EOM
 
 pacman-key --init
 pacman-key --lsign-key "farseerfc@archlinux.org"
+pacman-key --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E # 为了编译内核,添加新的密钥
 pacman -Sy --noconfirm && pacman -S --noconfirm archlinuxcn-keyring
 pacman -Syu --noconfirm --needed yay
-
-# 为了编译内核,添加新的密钥
-pacman-key --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E && pacman-key --refresh-keys
 
 # Makepkg does not allow running as root
 # Create a new user `builder`
