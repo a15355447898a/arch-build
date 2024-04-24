@@ -45,7 +45,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: []
+        PKGBUILDs: [linux-clear-sun]
 
       fail-fast: false
       
