@@ -59,7 +59,7 @@
 #  43. Generic-x86-64-v4 (GENERIC_CPU4)
 #  44. Intel-Native optimizations autodetected by the compiler (MNATIVE_INTEL)
 #  45. AMD-Native optimizations autodetected by the compiler (MNATIVE_AMD)
-: "${_subarch:="36"}"
+: "${_subarch:=""}"
 
 # 使用当前内核的 .config 文件 启用此选项将使用正在运行的内核的 .config，而不是 ARCH 的默认值。
 # 当软件包得到更新而你已经经历了定制配置选项的麻烦时，此选项很有用。

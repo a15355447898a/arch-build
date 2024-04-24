@@ -12,7 +12,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [mybase-desktop-bin,simpread-sync-appimage,roam-research]
+        repos: [mybase-desktop-bin,simpread-sync-appimage,roam-research,linux-clear-cjktty]
         #include:
         #  - repos: git-cola
         #    preinstall-pkgs: "at-spi2-core"
