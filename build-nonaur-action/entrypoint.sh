@@ -7,9 +7,14 @@ FILE="$(basename "$0")"
 cat << EOM >> /etc/pacman.conf
 [multilib]
 Include = /etc/pacman.d/mirrorlist
+[archlinuxcn]
+Server = https://repo.archlinuxcn.org/x86_64
 EOM
 
-pacman -Syu --noconfirm --needed base-devel
+pacman-key --init
+pacman-key --lsign-key "farseerfc@archlinux.org"
+pacman -Sy --noconfirm && pacman -S --noconfirm archlinuxcn-keyring
+pacman -Syu --noconfirm --needed yay
 
 # Makepkg does not allow running as root
 # Create a new user `builder`
@@ -29,7 +34,7 @@ cd "${INPUT_PKGDIR:-.}"
 
 # Just generate .SRCINFO
 if ! [ -f .SRCINFO ]; then
-	sudo -u builder makepkg --printsrcinfo --skippgpcheck > .SRCINFO
+	sudo -u builder makepkg --printsrcinfo > .SRCINFO
 fi
 
 function recursive_build () {
@@ -39,12 +44,12 @@ function recursive_build () {
 		fi
 	done
 	
-	sudo -u builder makepkg --printsrcinfo --skippgpcheck > .SRCINFO
+	sudo -u builder makepkg --printsrcinfo > .SRCINFO
 	mapfile -t OTHERPKGDEPS < \
 		<(sed -n -e 's/^[[:space:]]*\(make\)\?depends\(_x86_64\)\? = \([[:alnum:][:punct:]]*\)[[:space:]]*$/\3/p' .SRCINFO)
 	sudo -H -u builder yay --sync --noconfirm --needed --builddir="$BASEDIR" "${OTHERPKGDEPS[@]}"
 	
-	sudo -H -u builder makepkg --install --noconfirm --skippgpcheck
+	sudo -H -u builder makepkg --install --noconfirm
 	[ -d "$BASEDIR/local/" ] || mkdir "$BASEDIR/local/"
 	cp ./*.pkg.tar.zst "$BASEDIR/local/"
 }
@@ -70,10 +75,10 @@ fi
 # Build packages
 # INPUT_MAKEPKGARGS is intentionally unquoted to allow arg splitting
 # shellcheck disable=SC2086
-sudo -H -u builder makepkg --syncdeps --noconfirm --skippgpcheck ${INPUT_MAKEPKGARGS:-}
+sudo -H -u builder makepkg --syncdeps --noconfirm ${INPUT_MAKEPKGARGS:-}
 
 # Get array of packages to be built
-mapfile -t PKGFILES < <( sudo -u builder makepkg --packagelist --skippgpcheck )
+mapfile -t PKGFILES < <( sudo -u builder makepkg --packagelist )
 echo "Package(s): ${PKGFILES[*]}"
 
 # Report built package archives
@@ -134,3 +139,5 @@ function namcap_check() {
 if [ -z "${INPUT_NAMCAPDISABLE:-}" ]; then
 	namcap_check
 fi
+
+python3 $BASEDIR/build-nonaur-action/encode_name.py
