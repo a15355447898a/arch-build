@@ -49,7 +49,7 @@ function recursive_build () {
 		<(sed -n -e 's/^[[:space:]]*\(make\)\?depends\(_x86_64\)\? = \([[:alnum:][:punct:]]*\)[[:space:]]*$/\3/p' .SRCINFO)
 	sudo -H -u builder yay --sync --noconfirm --needed --builddir="$BASEDIR" "${OTHERPKGDEPS[@]}"
 	
-	sudo -H -u builder makepkg --install --noconfirm
+	sudo -H -u builder makepkg --install --noconfirm --skippgpcheck
 	[ -d "$BASEDIR/local/" ] || mkdir "$BASEDIR/local/"
 	cp ./*.pkg.tar.zst "$BASEDIR/local/"
 }
