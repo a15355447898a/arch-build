@@ -80,7 +80,7 @@ _minor=7
 _srcname=linux-${_major}
 _clr=${_major}.6-1426
 _gcc_more_v='20240221.2'
-pkgbase=linux-clear-sun
+pkgbase=linux-clear-cjktty-zfs
 pkgver=${_major}.${_minor}
 pkgrel=1
 pkgdesc='Clear Linux内核,带有zfs和cjktty并开启kexec'
@@ -164,7 +164,7 @@ prepare() {
 	### 添加zfs补丁
 	cd ${srcdir}/"zfs"
 	./autogen.sh
-	sed -i "s|\$(uname -r)|${pkgver}-clear-sun|g" configure
+	sed -i "s|\$(uname -r)|${pkgver}-clear-cjktty-zfs|g" configure
 	./configure CC=gcc --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin --libdir=/usr/lib \
 		--datadir=/usr/share --includedir=/usr/include --with-udevdir=/lib/udev \
 		--libexecdir=/usr/lib/zfs --with-config=kernel \

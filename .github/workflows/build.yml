@@ -45,7 +45,7 @@ jobs:
   buildNonAUR:
     strategy:
       matrix:
-        PKGBUILDs: [linux-clear-sun]
+        PKGBUILDs: [linux-clear-cjktty-zfs]
 
       fail-fast: false
       

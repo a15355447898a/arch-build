@@ -1,4 +1,4 @@
-pkgbase = linux-clear-sun
+pkgbase = linux-clear-cjktty-zfs
 	pkgdesc = Clear Linux内核,带有zfs和cjktty并开启kexec
 	pkgver = 6.8.7
 	pkgrel = 1
@@ -16,7 +16,7 @@ pkgbase = linux-clear-sun
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.8.tar.xz
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.8.tar.sign
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-6.8.7.xz
-	source = linux-clear::git+https://github.com/clearlinux-pkgs/linux.git#tag=6.8.6-1426
+	source = linux-clear-cjktty-zfs::git+https://github.com/clearlinux-pkgs/linux.git#tag=6.8.6-1426
 	source = more-uarches-20240221.2.tar.gz::https://github.com/graysky2/kernel_compiler_patch/archive/20240221.2.tar.gz
 	source = git+https://github.com/openzfs/zfs.git#branch=zfs-2.2-release
 	source = https://raw.githubusercontent.com/zhmars/cjktty-patches/master/v6.x/cjktty-6.7.patch
@@ -32,7 +32,7 @@ pkgbase = linux-clear-sun
 	sha256sums = SKIP
 	sha256sums = SKIP
 
-pkgname = linux-clear-sun
+pkgname = linux-clear-cjktty-zfs
 	pkgdesc = Clear Linux内核,带有zfs和cjktty并开启kexec
 	install = linux.install
 	depends = coreutils
@@ -45,6 +45,6 @@ pkgname = linux-clear-sun
 	provides = WIREGUARD-MODULE
 	provides = KSMBD-MODULE
 
-pkgname = linux-clear-sun-headers
-	pkgdesc = Clear Linux内核头
+pkgname = linux-clear-cjktty-zfs-headers
+	pkgdesc = Clear Linux内核,带有zfs和cjktty并开启kexec
 	depends = pahole
